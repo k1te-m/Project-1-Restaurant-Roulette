@@ -59,12 +59,13 @@
         var inputCity = $("#city-input").val().trim();
 
         searchWeather(inputCity);
-        getCityRestaurants(inputCity);
+        getCityID(inputCity);
     });
 
-    function getCityRestaurants() {
+    function getCityID() {
         var userInput = $("#city-input").val();
         var queryURL = "https://developers.zomato.com/api/v2.1/cities?q="+userInput;
+
 
         $.ajax({
           url: queryURL,
@@ -74,12 +75,28 @@
             "user-key": "6be02bb0652cc2706beef4c9ffe979b1"
           }
         }).then(function(response) {
-          console.log(response);
+          console.log(response.location_suggestions[0].id);
+          var userCity = response.location_suggestions[0].id;
+          function getRestaurants(userCity) {
+          var queryURL2 = "https://developers.zomato.com/api/v2.1/search?entity_id="+userCity+"&entity_type=city&count=50";
+
+          $.ajax({
+            url: queryURL2,
+            method: "GET",
+            headers: {
+            "Accept": "application/json",
+            "user-key": "6be02bb0652cc2706beef4c9ffe979b1"
+            }
+          }).then(function(response) {
+            console.log(response);
+          })
+
+        }
+        getRestaurants(userCity);
         });
-
-
-
-
+        
     }
+
+
 </script>
 </html>
