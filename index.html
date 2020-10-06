@@ -27,6 +27,7 @@
     </form>
     <!-- Location Input Return Section -->
   <div id="cityinfo-div"></div>
+  <div id="restaurantinfo-div"></div>
     
 </body>
 
@@ -62,7 +63,7 @@
         getCityID(inputCity);
     });
 
-    function getCityID() {
+    function getCityID() { //function to extract cityID of user input from zomato api
         var userInput = $("#city-input").val();
         var queryURL = "https://developers.zomato.com/api/v2.1/cities?q="+userInput;
 
@@ -76,9 +77,10 @@
           }
         }).then(function(response) {
           console.log(response.location_suggestions[0].id);
-          var userCity = response.location_suggestions[0].id;
-          function getRestaurants(userCity) {
-          var queryURL2 = "https://developers.zomato.com/api/v2.1/search?entity_id="+userCity+"&entity_type=city&count=50";
+          var userCity = response.location_suggestions[0].id; //grabs the first location suggestion's ID
+          function getRestaurants(userCity) { //another function to serach for restaurants based on city ID
+          var queryURL2 = "https://developers.zomato.com/api/v2.1/search?entity_id="+userCity+"&entity_type=city&count=100";
+          console.log(queryURL2);
 
           $.ajax({
             url: queryURL2,
@@ -89,10 +91,15 @@
             }
           }).then(function(response) {
             console.log(response);
+            var randomInd = Math.floor(Math.random() * 20);
+            var randomRestaurant = response.restaurants[randomInd].restaurant.name
+            $("#restaurantinfo-div").append(randomRestaurant);
           })
 
         }
+        
         getRestaurants(userCity);
+        
         });
         
     }
