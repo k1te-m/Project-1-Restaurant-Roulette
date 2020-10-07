@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
     <!-- Compressed JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
     
 </head>
 <body>
@@ -20,11 +21,17 @@
         </div>
       </div>
         <!-- Location Input Form -->
-    <form id="location-form"> 
-        <label for="city-input">Enter Your City Here</label>
-        <input type="text" id="city-input"><br>
-        <input id="select-city" type="submit" value="GO!">
-    </form>
+    <div class="grid-x grid margin-x">
+      <div id="form-container" class="cell medium-6">
+        <h1>Let's Play Restaurant Roulette!</h1>
+        <p>Having trouble deciding what to eat? Enter your city name and we'll calculate the perfect restaurant for you based on your current weather conditions. Never have trouble making dinner decisions again!</p>
+        <form id="location-form"> 
+          <label for="city-input">Enter Your City Here</label>
+          <input type="text" id="city-input"><br>
+          <input id="select-city" type="submit" value="GO!">
+        </form>
+      </div>
+    </div>
     <!-- Location Input Return Section -->
   <div id="cityinfo-div"></div>
   <div id="restaurantinfo-div"></div>
