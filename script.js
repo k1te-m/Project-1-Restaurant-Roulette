@@ -70,13 +70,19 @@ function getCityID() {
         var cuisineEl = $("<div>").text("Cuisine: "+restCuisine);
         var restRating = response.restaurants[randomInd].restaurant.user_rating.aggregate_rating;
         var ratingEl = $("<div>").text("Aggregate Rating: "+restRating);
+        var restLocation = response.restaurants[randomInd].restaurant.location.address;
+        console.log(restLocation);
+        console.log(restLocation.replace(/\s+/g, "+"));
+        var locLink = $("<a>").text(restLocation);
 
         menuEl.attr("href", menuURL);
         menuEl.attr("target", "_blank");
         restaurantEl.attr("href", mainURL);
         restaurantEl.attr("target", "_blank");
+        locLink.attr("href", "https://google.com/maps/place/" + restLocation.replace(/\s+/g, "+"));
+        locLink.attr("target", "_blank");
 
-        $("#restaurantinfo-div").append(restaurantEl, ratingEl, cuisineEl, menuEl, timingEl, featImg);
+        $("#restaurantinfo-div").append(restaurantEl,"<br>" , locLink, ratingEl, cuisineEl, menuEl, timingEl, featImg);
       });
     }
 
