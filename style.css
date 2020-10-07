@@ -58,3 +58,19 @@ label {
     font-size: 16px;
     margin-bottom: 5px;
 }
+
+footer{
+    background-color: black;
+    height: 40px;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+
+.footer-text{
+    text-align: center;
+    color: darkgray;
+    padding-top: 10px;
+    font-size: 12px;
+}
