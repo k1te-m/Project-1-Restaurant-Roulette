@@ -33,8 +33,15 @@
       </div>
     </div>
     <!-- Location Input Return Section -->
-  <div id="cityinfo-div"></div>
-  <div id="restaurantinfo-div"></div>
+    <div class="grid-x grid margin-x">
+      <div id="results-container" class="cell medium-6">
+        <h1>Where Should You Eat?</h1>
+        <div id="cityinfo-div"></div>
+        <h3>Your perfect restaurant:</h3>
+        <div id="restaurantinfo-div"></div>
+      </div>
+    </div>
+
     
 </body>
 
@@ -53,8 +60,8 @@
             method: "GET"
         }).then(function(response) {
 
-            var cityName = $("<h1>").text(response.name); // creating the variable for city name
-            var mainWeather = $("<h2>").text(response.weather[0].main); // creating the name for the main weather data value
+            var cityName = $("<div>").text(response.name); // creating the variable for city name
+            var mainWeather = $("<div>").text(response.weather[0].main); // creating the name for the main weather data value
 
             $("#cityinfo-div").empty(); // emptying div
             $("#cityinfo-div").append(cityName, mainWeather); // appending the under inputted city name, and the corresponding main weather data value
