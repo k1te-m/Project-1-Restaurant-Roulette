@@ -55,13 +55,28 @@ function getCityID() {
           "user-key": "6be02bb0652cc2706beef4c9ffe979b1",
         },
       }).then(function (response) {
+        console.log(response);
         var randomInd = Math.floor(Math.random() * 20);
+
         var randomRestaurant = response.restaurants[randomInd].restaurant.name;
-        var menuURL = response.restaurants[randomInd].restaurant.url;
+        var mainURL = response.restaurants[randomInd].restaurant.url;
+        var menuURL = response.restaurants[randomInd].restaurant.menu_url;
         var featImg = $("<img>").attr("src", response.restaurants[randomInd].restaurant.featured_image);
         var restaurantEl = $("<a>").text(randomRestaurant);
-        restaurantEl.attr("href", menuURL);
-        $("#restaurantinfo-div").append(restaurantEl, featImg);
+        var menuEl = $("<a>").text("Menu");
+        var restTiming = response.restaurants[randomInd].restaurant.timings;
+        var timingEl = $("<div>").text("Hours of Operation: "+restTiming);
+        var restCuisine = response.restaurants[randomInd].restaurant.cuisines;
+        var cuisineEl = $("<div>").text("Cuisine: "+restCuisine);
+        var restRating = response.restaurants[randomInd].restaurant.user_rating.aggregate_rating;
+        var ratingEl = $("<div>").text("Aggregate Rating: "+restRating);
+
+        menuEl.attr("href", menuURL);
+        menuEl.attr("target", "_blank");
+        restaurantEl.attr("href", mainURL);
+        restaurantEl.attr("target", "_blank");
+
+        $("#restaurantinfo-div").append(restaurantEl, ratingEl, cuisineEl, menuEl, timingEl, featImg);
       });
     }
 
