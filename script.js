@@ -55,10 +55,13 @@ function getCityID() {
           "user-key": "6be02bb0652cc2706beef4c9ffe979b1",
         },
       }).then(function (response) {
-        console.log(response);
         var randomInd = Math.floor(Math.random() * 20);
         var randomRestaurant = response.restaurants[randomInd].restaurant.name;
-        $("#restaurantinfo-div").append(randomRestaurant);
+        var menuURL = response.restaurants[randomInd].restaurant.url;
+        var featImg = $("<img>").attr("src", response.restaurants[randomInd].restaurant.featured_image);
+        var restaurantEl = $("<a>").text(randomRestaurant);
+        restaurantEl.attr("href", menuURL);
+        $("#restaurantinfo-div").append(restaurantEl, featImg);
       });
     }
 
