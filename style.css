@@ -3,6 +3,10 @@ body {
     text-align: center;
 }
 
+.container-fluid {
+    background-color: black;
+}
+
 #form-container {
     background-color: white;
     display: inline-block;
@@ -32,6 +36,15 @@ p {
 
 h1 {
     font-size: 22px;
+    font-weight: bold;
+}
+
+h2 {
+    color: darkgray;
+    font-size: 22px;
+    font-family: 'Courier New', Courier, monospace;
+    padding-top: 10px;
+    padding-bottom: 10px;
     font-weight: bold;
 }
 
