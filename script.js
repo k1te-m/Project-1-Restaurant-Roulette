@@ -55,7 +55,6 @@ function getCityID() {
           "user-key": "6be02bb0652cc2706beef4c9ffe979b1",
         },
       }).then(function (response) {
-        console.log(response);
         var randomInd = Math.floor(Math.random() * 20);
 
         var randomRestaurant = response.restaurants[randomInd].restaurant.name;
@@ -71,8 +70,6 @@ function getCityID() {
         var restRating = response.restaurants[randomInd].restaurant.user_rating.aggregate_rating;
         var ratingEl = $("<div>").text("Aggregate Rating: "+restRating);
         var restLocation = response.restaurants[randomInd].restaurant.location.address;
-        console.log(restLocation);
-        console.log(restLocation.replace(/\s+/g, "+"));
         var locLink = $("<a>").text(restLocation);
 
         menuEl.attr("href", menuURL);
