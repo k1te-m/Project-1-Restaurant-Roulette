@@ -46,9 +46,9 @@ function searchWeather(name) {
       // } else if (weather == "Thunderstorm") {
       //   $("body").css("background-image", "url(./Assets/thunderstorm.jpg)");
       // }
-      switch(weather) {
+      switch(weather) { // All weather background images courtesy of Vecteezy (attribution within CSS)
         case "Clear":
-          $("body").css("background-image", "url(./Assets/clear.jpg)");
+          $("body").css("background-image", "url(./Assets/clear.jpg)"); 
           break;
         case "Thunderstorm":
           $("body").css("background-image", "url(./Assets/thunderstorm.jpg)");
