@@ -38,6 +38,42 @@ function searchWeather(name) {
     $("#cityinfo-div").empty(); // emptying div
     $("#cityinfo-div").append(cityName, mainWeather);// appending the under inputted city name, and the corresponding main weather data value
     $(mainWeather).append(iconEl); //appends weather icon after the weather description
+
+    function weatherBackground(weather) {
+      var weather = response.weather[0].main;
+      // if (weather == "Clear") {
+      //   $("body").css("background-image", "url(./Assets/clear.jpg)");
+      // } else if (weather == "Thunderstorm") {
+      //   $("body").css("background-image", "url(./Assets/thunderstorm.jpg)");
+      // }
+      switch(weather) {
+        case "Clear":
+          $("body").css("background-image", "url(./Assets/clear.jpg)");
+          break;
+        case "Thunderstorm":
+          $("body").css("background-image", "url(./Assets/thunderstorm.jpg)");
+          break;
+        case "Clouds":
+          $("body").css("background-image", "url(./Assets/clouds.jpg)");
+          break;
+        case "Drizzle":
+          $("body").css("background-image", "url(./Assets/drizzle.jpg)");
+          break;
+        case "Rain":
+          $("body").css("background-image", "url(./Assets/rain.jpg)");
+          break;
+        case "Snow":
+          $("body").css("background-image", "url(./Assets/snow.jpg)");
+          break;
+        Default:
+          $("body").css("background-image", "url(https://img.pngio.com/pattern-red-fast-food-background-tile-1045-red-food-background-png-400_400.png)");
+          break;
+      }
+      
+      
+    }
+
+    weatherBackground();
   });
 }
 
@@ -72,7 +108,6 @@ function getCityID() {
           "user-key": "6be02bb0652cc2706beef4c9ffe979b1",
         },
       }).then(function (response) {
-        console.log(response);
         var randomInd = Math.floor(Math.random() * 20);
 
         var randomRestaurant = response.restaurants[randomInd].restaurant.name;
@@ -88,8 +123,6 @@ function getCityID() {
         var restRating = response.restaurants[randomInd].restaurant.user_rating.aggregate_rating;
         var ratingEl = $("<div>").text("Aggregate Rating: "+restRating);
         var restLocation = response.restaurants[randomInd].restaurant.location.address;
-        console.log(restLocation);
-        console.log(restLocation.replace(/\s+/g, "+"));
         var locLink = $("<a>").text(restLocation);
 
         menuEl.attr("href", menuURL);
