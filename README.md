@@ -6,6 +6,9 @@ Project #1 for Northwestern University's Full Time Coding Bootcamp program. Divi
 RESTAURANT ROULETTE
 Our group, Project Ninjas, choose to create an application that returns a random restaurant selection based on the users city location and current weather conditions. The use case if for individuals who have a hard time deciding which restaurant to go to, and would like someone else to choose for them. When the user enters their city they are presented with their current weather conditions and one restaurant selection (with additional information included below about the restarant). This application will help individuals make quicker decisions, and potentially expand their taste in restaurants. If the user doesn't like the restaurant choice they received, they can always enter their city again for a new choice.
 
+SCREENSHOTS
+![homepage](./assets/homepage-screenshot.png)
+
 TEAM
 Team contibutors include Kevin Miller (project manager), Alex Eesley, and Flory Ann Evia. All contibutors are students in the Coding Bootcamp mentioned above.
 
