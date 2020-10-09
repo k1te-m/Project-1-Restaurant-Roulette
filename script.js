@@ -14,7 +14,6 @@ Allow user to click “get another option” if they don’t like the current re
 Add extra css styling once all functionality is working properly (potentially create a quick logo to use on page and favicon, populate nice color scheme, and UX friendly design.
 */
 
-
 function searchWeather(name) {
   var APIKey = "e79e860f1526eb9cc2572046fff7a30c"; // currently Alex's API key
   var userInput = $("#city-input").val();
@@ -36,19 +35,17 @@ function searchWeather(name) {
     var iconURL = "http://openweathermap.org/img/w/" + weatherIcon + ".png";
     iconEl = $("<img>").attr("src", iconURL);
     $("#cityinfo-div").empty(); // emptying div
-    $("#cityinfo-div").append(cityName, mainWeather);// appending the under inputted city name, and the corresponding main weather data value
+    $("#cityinfo-div").append(cityName, mainWeather); // appending the under inputted city name, and the corresponding main weather data value
     $(mainWeather).append(iconEl); //appends weather icon after the weather description
 
     function weatherBackground(weather) {
       var weather = response.weather[0].main;
-      // if (weather == "Clear") {
-      //   $("body").css("background-image", "url(./Assets/clear.jpg)");
-      // } else if (weather == "Thunderstorm") {
-      //   $("body").css("background-image", "url(./Assets/thunderstorm.jpg)");
-      // }
-      switch(weather) { // All weather background images courtesy of Vecteezy (attribution within CSS)
+
+      switch (
+        weather // All weather background images courtesy of Vecteezy (attribution within CSS)
+      ) {
         case "Clear":
-          $("body").css("background-image", "url(./Assets/clear.jpg)"); 
+          $("body").css("background-image", "url(./Assets/clear.jpg)");
           break;
         case "Thunderstorm":
           $("body").css("background-image", "url(./Assets/thunderstorm.jpg)");
@@ -65,12 +62,12 @@ function searchWeather(name) {
         case "Snow":
           $("body").css("background-image", "url(./Assets/snow.jpg)");
           break;
-        Default:
-          $("body").css("background-image", "url(https://img.pngio.com/pattern-red-fast-food-background-tile-1045-red-food-background-png-400_400.png)");
+          Default: $("body").css(
+            "background-image",
+            "url(https://img.pngio.com/pattern-red-fast-food-background-tile-1045-red-food-background-png-400_400.png)"
+          );
           break;
       }
-      
-      
     }
 
     weatherBackground();
@@ -90,7 +87,6 @@ function getCityID() {
       "user-key": "6be02bb0652cc2706beef4c9ffe979b1",
     },
   }).then(function (response) {
-    console.log(response.location_suggestions[0].id);
     var userCity = response.location_suggestions[0].id; //grabs the first location suggestion's ID
     function getRestaurants(userCity) {
       //another function to serach for restaurants based on city ID
@@ -98,7 +94,6 @@ function getCityID() {
         "https://developers.zomato.com/api/v2.1/search?entity_id=" +
         userCity +
         "&entity_type=city&count=100";
-      console.log(queryURL2);
 
       $.ajax({
         url: queryURL2,
@@ -113,16 +108,22 @@ function getCityID() {
         var randomRestaurant = response.restaurants[randomInd].restaurant.name;
         var mainURL = response.restaurants[randomInd].restaurant.url;
         var menuURL = response.restaurants[randomInd].restaurant.menu_url;
-        var featImg = $("<img>").attr("src", response.restaurants[randomInd].restaurant.featured_image);
+        var featImg = $("<img>").attr(
+          "src",
+          response.restaurants[randomInd].restaurant.featured_image
+        );
         var restaurantEl = $("<a>").text(randomRestaurant);
         var menuEl = $("<a>").text("Menu");
         var restTiming = response.restaurants[randomInd].restaurant.timings;
-        var timingEl = $("<div>").text("Hours of Operation: "+restTiming);
+        var timingEl = $("<div>").text("Hours of Operation: " + restTiming);
         var restCuisine = response.restaurants[randomInd].restaurant.cuisines;
-        var cuisineEl = $("<div>").text("Cuisine: "+restCuisine);
-        var restRating = response.restaurants[randomInd].restaurant.user_rating.aggregate_rating;
-        var ratingEl = $("<div>").text("Aggregate Rating: "+restRating);
-        var restLocation = response.restaurants[randomInd].restaurant.location.address;
+        var cuisineEl = $("<div>").text("Cuisine: " + restCuisine);
+        var restRating =
+          response.restaurants[randomInd].restaurant.user_rating
+            .aggregate_rating;
+        var ratingEl = $("<div>").text("Aggregate Rating: " + restRating);
+        var restLocation =
+          response.restaurants[randomInd].restaurant.location.address;
         var locLink = $("<a>").text(restLocation);
         var replayBtn = $("<button>").text("Play Again!").attr({
           type: "submit",
@@ -133,7 +134,10 @@ function getCityID() {
         menuEl.attr("target", "_blank");
         restaurantEl.attr("href", mainURL);
         restaurantEl.attr("target", "_blank");
-        locLink.attr("href", "https://google.com/maps/place/" + restLocation.replace(/\s+/g, "+"));
+        locLink.attr(
+          "href",
+          "https://google.com/maps/place/" + restLocation.replace(/\s+/g, "+")
+        );
         locLink.attr("target", "_blank");
 
         $("#restaurantinfo-div").append(restaurantEl,"<br>" , locLink, ratingEl, cuisineEl, menuEl, timingEl, featImg, replayBtn);
