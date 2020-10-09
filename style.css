@@ -93,6 +93,14 @@ footer{
     margin-bottom: 40px;
 }
 
+#play-again {
+    background-color: crimson;
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+}
+
 /* Attributions for Background Images:
 
 Clear- <a href="https://www.vecteezy.com/free-vector/background">Background Vectors by Vecteezy</a>
