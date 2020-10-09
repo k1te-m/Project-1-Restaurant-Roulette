@@ -155,6 +155,7 @@ $("#select-city").on("click", function (event) {
   searchWeather(inputCity);
   getCityID(inputCity);
   $("#results-container").attr("style", "display: block");
+  $("#form-container").attr("style", "display: none");
 });
 
 $("#reload").on("click", function(event) {
