@@ -125,10 +125,7 @@ function getCityID() {
         var restLocation =
           response.restaurants[randomInd].restaurant.location.address;
         var locLink = $("<a>").text(restLocation);
-        var replayBtn = $("<button>").text("Play Again!").attr({
-          type: "submit",
-          id: "play-again",
-        });
+      
 
         menuEl.attr("href", menuURL);
         menuEl.attr("target", "_blank");
@@ -140,13 +137,15 @@ function getCityID() {
         );
         locLink.attr("target", "_blank");
 
-        $("#restaurantinfo-div").append(restaurantEl,"<br>" , locLink, ratingEl, cuisineEl, menuEl, timingEl, featImg, replayBtn);
+        $("#restaurantinfo-div").append(restaurantEl,"<br>" , locLink, ratingEl, cuisineEl, menuEl, timingEl, featImg);
       });
     }
 
     getRestaurants(userCity);
   });
 }
+
+
 
 $("#select-city").on("click", function (event) {
   // creating the on click event to take in the user input city value
@@ -157,7 +156,14 @@ $("#select-city").on("click", function (event) {
   getCityID(inputCity);
 });
 
-$("#play-again").on("click", function(event) {
+$("#reload").on("click", function(event) {
   event.preventDefault();
-  location.reload(true);
+  location.reload();
 })
+
+
+
+
+
+
+
