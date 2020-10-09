@@ -124,6 +124,10 @@ function getCityID() {
         var ratingEl = $("<div>").text("Aggregate Rating: "+restRating);
         var restLocation = response.restaurants[randomInd].restaurant.location.address;
         var locLink = $("<a>").text(restLocation);
+        var replayBtn = $("<button>").text("Play Again!").attr({
+          type: "submit",
+          id: "play-again",
+        });
 
         menuEl.attr("href", menuURL);
         menuEl.attr("target", "_blank");
@@ -132,7 +136,7 @@ function getCityID() {
         locLink.attr("href", "https://google.com/maps/place/" + restLocation.replace(/\s+/g, "+"));
         locLink.attr("target", "_blank");
 
-        $("#restaurantinfo-div").append(restaurantEl,"<br>" , locLink, ratingEl, cuisineEl, menuEl, timingEl, featImg);
+        $("#restaurantinfo-div").append(restaurantEl,"<br>" , locLink, ratingEl, cuisineEl, menuEl, timingEl, featImg, replayBtn);
       });
     }
 
@@ -148,3 +152,8 @@ $("#select-city").on("click", function (event) {
   searchWeather(inputCity);
   getCityID(inputCity);
 });
+
+$("#play-again").on("click", function(event) {
+  event.preventDefault();
+  location.reload(true);
+})
